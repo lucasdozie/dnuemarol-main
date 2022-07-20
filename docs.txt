@@ -1,0 +1,53 @@
+#Intro
+it pronounced, ```nu - ma - ro```
+
+#description
+ dnuemarol is an Hr as a service tool(HAAS), which manages services like Payrol, Recruitment and Okr services
+
+
+### problem statement
+ -
+# Products
+ - Recruitment/Talent (pool) process (setup interviews, SMS, Email)
+    -+ process multiple cvs (500 - 1000) at the same time
+        - Pass an array of params / condition against the uploaded CV with returns the Matched CVs<[Array]>
+        - An fileSystem service that can read file(pdf, doc, csv)
+    -+ Add talent to db after their interview for future refernce (cv, phone, email, jobRole, year, expectatedSalary)
+    -+ send notification(email/sms/phone call) when they're needed
+    -+ I need a faster way to sort through applicant cv's
+    -+ Automatically send rejection emails to candidates whose cv's do match the criteria or do not pass an interview process.(Mail)
+    -+ Automatically let candidates know when their cv's have advanced to the next stage of the interview process(Mail)
+ - Payrol process
+ - Employee/Member Objective Key Result Process
+    -+ Upload csv format of Okr(with metas)
+    -+ Manage employee data (bio)
+    -+ Add and manage a organization organogram (which will be drawn from an employee Tree from interns to CEO and maybe Investorsdozie)
+    -+ Admin view: View Okr by department(model: name, id, no. employee)
+    -+ Organization Employee and Admin Dashboard
+        -+ filter employee by staffId, name, location, role, phone (a roboust filter system)
+
+ - Data Visualization (Coming Soon)
+
+#Demo
+ - Upload a youtube video explaining the concept
+ - allocate a limited space for creating beta/sandbox customer account
+
+#Pricing (change currency depending on the geo-local e.g nigeria uses Naira)
+ basic ($0.5¢/member/month) 
+  - 1000 user/member/employee per $0.5(
+  - 5 admins max
+
+ nuema ($1.3¢/member/month)
+  - 5000 user/member/employees
+  - 10 admins
+
+ Advance ($5.5¢/member/month)
+  - 20000 user/member/employee
+  - 20 admins
+
+ Customs
+  - Schedule a call with admin
+
+#Developer
+ - Open api to user that wants to use their UI (employee, payment made)
+ - use OpenID token Oauth 2.0
