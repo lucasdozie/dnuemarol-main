@@ -9,6 +9,19 @@
 /build
 /dist
 
+
+node_modules/
+build/
+.gitlab-ci.yml
+.env
+.env.production
+env
+trash
+trash
+.env.production
+access.log
+.DS_Store
+
 /public/assets
 
 # Ignore master key for decrypting credentials and more.
