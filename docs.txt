@@ -51,3 +51,46 @@ it pronounced, ```nu - ma - ro```
 #Developer
  - Open api to user that wants to use their UI (employee, payment made)
  - use OpenID token Oauth 2.0
+
+#Models/schema
+    ### Recruitment
+        - JobManagement: 
+            description: Handles job openings
+            schema: {user(dnuemarol user id), job{name, description, category, role}, department, status(active, draft), created_at, updated_at}
+            routes: ["createJobOpening", "getAllOpening", "getOneOpening", "updateOneOpening, "updateManyOpening"]
+        - Jobopeningentries: 
+            description: managing entries from candidate filling the job descrription
+            schema: {user(candidate), jobopeningId, candidate{name, otherFeild..., uploadcvs}, stages["pending", "under review", "interview", "assessment", "Hr review", "Hired"], created_at, updated_at}
+            routes: ["create/initiate", "createMany/initiateMany", "getAll", "getOne", "updateOne", "search", "searchFilter", "sendemail<for every stage passed>", "updateMany", "deleteMany"]
+        - JobTracking (Applicant Account - login, Dashboard): coming soon
+            description: managing candidate acount in-app
+            schema: {user(candidate)}
+            routes: ["create/initiate", "createMany/initiateMany", "getAll", "getOne", "updateOne", "updateMany", "deleteMany"]
+        - InternalJobManagement: (can be merge with the main Job management entity)
+            description: Handles job openings that is only open to staffs (this can be connected to company staff records by staffId)
+            schema: {user(dnuemarol user id), job{name, description, category, role}, department, status(active, draft), created_at, updated_at}
+            routes: ["createJobOpening", "getAllOpening", "getOneOpening", "updateOneOpening, "updateManyOpening"]
+        - HireWithManagement:
+            description: Handles the whole process of updating or keep hiring manager or Job post stakeholders in sync
+            schema: {user(dnuemarol user id), job{name, description, category, role}, department, status(active, draft), created_at, updated_at}
+            routes: ["create", "getAll", "getOneOpening", "updateOneOpening, "updateMany"]
+        - poolTalent:
+            description: Handles and manages the candidate records, get this record when the applicant apply to any job
+            schema: {first_name, last_name, age, gender, yearsOfExperience, jobTitle, status: ("pending", "under review", "interview", "assessment", "Hr review", "Hired"), created_at, updated_at}
+            routes: ["initiate", "initiateMany", "getOne", "updateOne, "updateMany", "notifyCandidate<of new openings that matches thier role>"]
+        - interviewQATemplate:
+            description: Handles and logs interview template/question tailor for each role(gets pull during interview or forwarded to the shortlisted candidate email), Hiring managers set the questions
+            schema: {user(Hiring manager), questionType: (APtitude, Competence, PersonalityTest), questions:[{name, answer}], linksToQuestion: "<github link>" status: ("pending", "publish"), created_at, updated_at}
+            routes: ["initiate", "initiateMany", "getOne", "updateOne, "updateMany", "sendMailCandidate<of new openings that matches thier role>"]
+        - Medical & Background Checks: coming soon
+            descript: handle the Checks, checking whether the candidate is a felony or previous job, medical records<not all though>
+
+    ### Payroll
+            - payManagement: 
+                descrription: manages and generate payroll for the month/week
+                schema: {user, name, status(pending, ongoing, completed), create_at, updated_at}
+                routeS: ["createMonthly", "getAll"]
+            - PayDirect: 
+                descrription: manages staff account detail so payment at the end of the month can be made to them directly <integrate to crust<or other bank> payment system>
+                schema: {staffId, hrId<person making the payment>}
+                routeS: ["paymentIntergration", "genrate payslip"]
