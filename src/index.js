@@ -1,17 +1,19 @@
-"use strict"
-const cluster = require("./config/cluster");
-const logger = require("./config/logger");
-const app = require("./app")
-const {PORT} = require("./config/env")
+//const migrateDB = require("./")
+const configEnv = require("./config/env")
+const Dnuemarol = require("./lib");
+const startServer = require("./api");
 
-// cluster(() => {
-//     app
-//     const server = app.listen(PORT, () => {
-//            // console.log(`Express listening on port: ${port}`);
-//         console.log(`Worker ${process.pid} started on port ${PORT}`);
-//     });  
-// })
+(async () => {
+    //start server
+    const dnuemarol = Dnuemarol({
+        jwtSecret: configEnv.JWT_SECRET
+    });
 
-const server = app.listen(PORT, () => logger.info(`Listening on port ${PORT}`));
+    console.log({keys: Object.keys(dnuemarol)})
 
-module.exports = server;
+    //init app lib and cores
+    await dnuemarol.start();
+
+    //start api server
+    startServer(dnuemarol, dnuemarol.config.env.PORT)
+})()

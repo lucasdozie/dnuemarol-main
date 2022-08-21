@@ -1,3 +1,4 @@
-module.exports = (route) => {
-    route.get(`test`, (req, res, next) => console.log("Test Okr"))
+module.exports = (route, controller, middleware) => {
+    route.get(`test`, (req, res, next) => console.log("Test Okr")),
+    route.get(`getAll`, controller.recruitmentController.getAll)
 }
