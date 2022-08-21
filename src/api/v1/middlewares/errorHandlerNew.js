@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 "use strict";
-import logger from "./../../../config/logger";
-import { BaseError } from "./../../../utils/errors";
+import logger from "./../config/logger";
+import { BaseError } from "./../utils/errors";
 /**
  * @todo import loggerService, mailService & senteryService
  * */
@@ -27,11 +26,3 @@ class ErrorHandler {
   }
 }
 module.exports = new ErrorHandler();
-=======
-module.exports = function(error, req, res, next) {
-  res.status(500).json({
-    status: "failure",
-    message: `Something went wrong ${error.message}`
-  });
-};
->>>>>>> 7dd33ca3da84820c98ebd20bfc581fbdaa44ab2c
