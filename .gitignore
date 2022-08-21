@@ -5,7 +5,7 @@ build/
 .env.production
 env
 trash
-trash
-.env.production
+.env.locals
 access.log
 .DS_Store
+apiDocs.json
