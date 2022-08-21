@@ -9,8 +9,3 @@ trash
 .env.production
 access.log
 .DS_Store
-
-/public/assets
-
-# Ignore master key for decrypting credentials and more.
-/config/master.key
