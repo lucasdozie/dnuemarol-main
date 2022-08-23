@@ -1,6 +1,7 @@
 const { getNamespace } = require('continuation-local-storage')
-const { DNUEMA_ORGANOZATION_MS_URL } = require("./../config/env");
-const {default: logger} = require("./../config/logger")
+const getConfigEnv = require("./../config/env");
+//const {default: logger} = require("./../config/logger");
+import logger from "./../config/logger"
 
 const dnuemarolService = require('./dnuemarol/api')
 
@@ -22,20 +23,19 @@ function DbConnectionService(){
           console.log("init bootstrap.....")
           //get all admin model from another service
           //const organization = []
-          const dnuemarolServiceInstance = new dnuemarolService(DNUEMA_ORGANOZATION_MS_URL)
-          const options = {
-            params: {},
-            headers: {"Content-Type": "application/json", Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJkYXNoYm9hcmQucmVhZCIsInBheXJvbGwucmVhZCIsInBheXJvbGwud3JpdGUiXSwicGhvbmVfbnVtYmVyIjpudWxsLCJzZXNzaW9uQXV0aElkIjoiNjJmZTRmNDUxODNiOGI5ZDIxMzhmNDI1IiwidXNlcklkIjoiNjJmYjgzNTA4YmJhMWRlNzE3NTlmZWYwIiwiaWF0IjoxNjYwODMzNjA1LCJleHAiOjE2NjA5MjAwMDUsImF1ZCI6InVzZXIiLCJpc3MiOiJkbnVlbWFyb2wifQ.tQRISpx3tiJHFiMIP8ko7hEyXl-Veu7xoLzdx53xIkg"}
-          }
-          const organization = await dnuemarolServiceInstance.organization.getAll(options);
-            console.log(organization)
+          const dnuemarolServiceInstance = new dnuemarolService(getConfigEnv)
+          // const options = {
+          //   params: {},
+          //   headers: {"Content-Type": "application/json", Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJkYXNoYm9hcmQucmVhZCIsInBheXJvbGwucmVhZCIsInBheXJvbGwud3JpdGUiXSwicGhvbmVfbnVtYmVyIjpudWxsLCJzZXNzaW9uQXV0aElkIjoiNjJmZTRmNDUxODNiOGI5ZDIxMzhmNDI1IiwidXNlcklkIjoiNjJmYjgzNTA4YmJhMWRlNzE3NTlmZWYwIiwiaWF0IjoxNjYwODMzNjA1LCJleHAiOjE2NjA5MjAwMDUsImF1ZCI6InVzZXIiLCJpc3MiOiJkbnVlbWFyb2wifQ.tQRISpx3tiJHFiMIP8ko7hEyXl-Veu7xoLzdx53xIkg"}
+          // }
+          const organization = await dnuemarolServiceInstance.organization.getAll({});
 
            
             if(!organization || organization.data?.length < 1) throw new Error("No tenant/Organization was found")
             //@todo - connect to the current tenant(one) instead of all tenant for each server instance
             // seem pretty difficult now, we can't know which tenant/org to connect until they start requesting for thier resource 
             await connectOtherOrg(organization.data);
-            logger.info(`Connecting to (${organization.length}) database...`);
+            logger.info(`Connecting to (${organization.data.length}) database...`);
           //  return tenantMapping;
         } catch (e) {
             console.error(e)

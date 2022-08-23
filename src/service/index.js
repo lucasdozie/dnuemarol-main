@@ -1,8 +1,8 @@
 const Dnuemarol = require("./dnuemarol/api")
 //const ThirdParty = require("./thirdparty");
-module.exports = function services(DNUEMA_ORGANOZATION_MS_URL){
+module.exports = function services(dnuema_env){
     return {
-        dnuemarol:  Dnuemarol(DNUEMA_ORGANOZATION_MS_URL),
+        dnuemarol:  Dnuemarol(dnuema_env),
     //    thirdParty: new ThirdParty()
     }
 }

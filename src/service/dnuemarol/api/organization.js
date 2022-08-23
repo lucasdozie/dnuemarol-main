@@ -19,7 +19,20 @@ module.exports = function OrganizationService(MAIN_API_URL = ""){ //MAIN_API_URL
         //       throw new Error(`Error: ${err}`);
         // });
     }
+
+    function getOne(request){
+        const options = {
+            data: request.params,
+            headers: request.headers
+        }
+        return new Promise((resolve, reject) => {
+            axios.get(`${MAIN_API_URL}organization/getOneAlt`, options)
+            .then(res => resolve(res.data))
+            .catch(err => reject(err?.data))
+        })
+    }
     return Object.freeze({
-        getAll
+        getAll,
+        getOne
     })
 }

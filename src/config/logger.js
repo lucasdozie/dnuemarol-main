@@ -39,5 +39,5 @@ const logger = createLogger({
   ],
 });
 
-//export default logger;
-module.exports = logger;
+export default logger;
+//module.exports = logger;

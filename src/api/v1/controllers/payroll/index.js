@@ -1,5 +1,5 @@
 "use strict";
-module.exports = function PayrollController({payrollService}, logger){
+module.exports = function PayrollController({payrollService, dnuemarol}, logger){
   async function test(req, res, next) {
     return res.status(200).json({ message: "welcome to payroll endpoint" });
   }
@@ -10,7 +10,7 @@ module.exports = function PayrollController({payrollService}, logger){
   }
   
   async function getAll(req, res, next){
-    logger.info("init getall paroll")
+    logger.info("init getall paroll");
       const foundData = await payrollService.getAll({});
       return res.status(200).json(foundData);
   }

@@ -1,10 +1,9 @@
 const {NotFoundError } = require("./../../../utils/errors");
 const { asyncMiddleware } = require("../helpers/asyncTryCatchWrapper");
 
-module.exports = function AuthMiddleware(logger, services) {
+module.exports = function AuthMiddleware(logger, services, redisClient) {
   return function authTokenMiddleware(scope){
     return asyncMiddleware(async (req, res, next) => {
-      
       try {
         const authHeader = req.headers.authorization;
         let userId;
@@ -14,6 +13,7 @@ module.exports = function AuthMiddleware(logger, services) {
           const token = authHeader.substring(7, authHeader.length);
 
           // we validate the token
+          //const payload = await services.sessionAuth.validateAccessToken(token, scope);
           const payload = await services.sessionAuth.validateAccessToken(token, scope);
 
           userId = payload.data.userId;
@@ -27,10 +27,10 @@ module.exports = function AuthMiddleware(logger, services) {
           throw new NotFoundError('No authorization header or api key found');
         }
         // we get the user in DB
-        const foundUser = await services.user.getOne({_id: userId});
-        req.user = foundUser.data;
+        const foundUser = await services.user.getOne({_id: userId}, req.headers)//await services.user.getOne(requestHttp);
+        if(!foundUser.data) throw new NotFoundError(`User not found : ${foundUser}`);
 
-        logger.info(`user: `,req.user)
+        req.user = foundUser.data;
 
         next();
       } catch (e) {

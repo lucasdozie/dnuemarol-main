@@ -9,7 +9,7 @@ const startServer = require("./api");
         jwtSecret: configEnv.JWT_SECRET
     });
 
-    console.log({keys: Object.keys(dnuemarol)})
+    //console.log({keys: Object.keys(dnuemarol)})
 
     //init app lib and cores
     await dnuemarol.start();

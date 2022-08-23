@@ -13,6 +13,7 @@ const errorHandler = require("./../middlewares/errorHandler");
 const router = express.Router();
 
 const { default: logger } = require("../../../config/logger");
+
 module.exports = (app) => {
   app.use(bodyParser.json());
 
@@ -41,11 +42,11 @@ module.exports = (app) => {
   });
 
   process.on("unhandledRejection", function (reason, promise) {
-    logger.error(`Unhandled Rejection at: ${promise}`, Object.keys(promise), `reason: ${reason}`, Object.keys(reason));
+    logger.error(`Unhandled Rejection at: ${promise} reason: ${reason}`);
   });
 
   process.on("unhandledException", function (reason, promise) {
-    logger.error(`Unhandled Exception at: ${promise}`, Object.keys(promise), `reason: ${reason}`, Object.keys(reason));
+    logger.error(`Unhandled Exception at: ${promise} reason: ${reason}`);
   });
 
   const shutdown = async function (signal) {

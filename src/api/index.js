@@ -33,6 +33,7 @@ module.exports = function start(dnuema, port, options){
         );
         app.use(morgan("combined", { stream: accessLogStream }));
     }
+    
     app.use(router);
     
 

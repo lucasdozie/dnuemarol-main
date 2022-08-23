@@ -1,5 +1,7 @@
-import logger from "./../config/logger"
+const redis = require("redis");
+const Promise = require("bluebird");
 
+import logger from "./../config/logger"
 //const { DNUEMA_ORGANOZATION_MS_URL } = require("./../config/env");
 const getConnection = require("./../utils/dbConn")
 
@@ -15,6 +17,7 @@ const getUseCases = require("./useCases") //useCase replaces service, while serv
 const getDbConnectionServices = require("./../service/dbConnection")
 
 function Dnuemarol(params){
+    Promise.promisifyAll(redis);
     params.jwtSecret = params.jwtSecret// || getConfig.env.JWT_SECRET; //generate a secret instead
 
     logger.info(`getting the current db connection(s)`)
@@ -28,16 +31,21 @@ function Dnuemarol(params){
 
     const useCases = getUseCases(dataRepository, logger)
 
-    const services = getServices(getConfig.env.DNUEMA_ORGANOZATION_MS_URL)
+    const services = getServices(getConfig.env)
 
     logger.info(`getControllers.....`)
 
-    const controller = getControllers(useCases, logger)//(useCases, services, logger)
+    const controller = getControllers(Object.assign({}, useCases, services), logger)//(useCases, services, logger)
 
-    logger.info(`getMiddlewares.....`)
-    
-    //const middleware = getMiddlewares(logger, services);
-    const middleware = getMiddlewares(logger, services.dnuemarol);
+    logger.info(`getMiddlewares.....${getConfig.env.REDIS_URI}`)
+
+    const redisClient = redis.createClient({url: getConfig.env.REDIS_URI});
+    (async function(){
+        redisClient.on('error', (err) => console.log('Redis Client Error', err));
+        await redisClient.connect();
+    })();
+
+    const middleware = getMiddlewares(logger, services.dnuemarol, redisClient);
 
     //const helpers = getHelper(services, logger);
 
