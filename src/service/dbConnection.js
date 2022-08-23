@@ -20,14 +20,9 @@ function DbConnectionService(){
     */
     const bootstrap = async () => {
         try {
-          console.log("init bootstrap.....")
           //get all admin model from another service
-          //const organization = []
           const dnuemarolServiceInstance = new dnuemarolService(getConfigEnv)
-          // const options = {
-          //   params: {},
-          //   headers: {"Content-Type": "application/json", Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJkYXNoYm9hcmQucmVhZCIsInBheXJvbGwucmVhZCIsInBheXJvbGwud3JpdGUiXSwicGhvbmVfbnVtYmVyIjpudWxsLCJzZXNzaW9uQXV0aElkIjoiNjJmZTRmNDUxODNiOGI5ZDIxMzhmNDI1IiwidXNlcklkIjoiNjJmYjgzNTA4YmJhMWRlNzE3NTlmZWYwIiwiaWF0IjoxNjYwODMzNjA1LCJleHAiOjE2NjA5MjAwMDUsImF1ZCI6InVzZXIiLCJpc3MiOiJkbnVlbWFyb2wifQ.tQRISpx3tiJHFiMIP8ko7hEyXl-Veu7xoLzdx53xIkg"}
-          // }
+         
           const organization = await dnuemarolServiceInstance.organization.getAll({});
 
            
