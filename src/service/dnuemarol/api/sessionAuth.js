@@ -53,7 +53,7 @@ module.exports = function SessionAuthService(MAIN_API_URL = "", JWT_SECRET){ //M
     
         //verify the required scope(login user) againt the route scope 
         if(decoded.scope.includes(scope) === false){
-            throw new Error(`AuthMiddlware scope "${scope}" is not not in the list of authorized scope ${decode.scope}`)
+            throw new Error(`AuthMiddlware scope "${scope}" is not not in the list of authorized scope ${decoded.scope}`)
         }
 
         //todo - working on adding cache, that can persist the data 

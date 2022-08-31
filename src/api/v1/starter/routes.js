@@ -71,7 +71,7 @@ module.exports = (app) => {
   router.get("/", (req, res) => {
     res.status(200).json({
       status: "success",
-      message: "Welcome to Thrive AOS Admin!!!",
+      message: "Welcome to Dnuemarol Gateway!!!",
     });
   });
 };

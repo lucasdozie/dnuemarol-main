@@ -5,6 +5,7 @@ build/
 .env.production
 env
 trash
+.DS_Store
 .env.locals
 access.log
 .DS_Store

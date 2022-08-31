@@ -10,7 +10,7 @@ const starterConfig = require("./v1/starter/config")
 const starterRoutes = require("./v1/starter/routes")
 
 module.exports = function start(dnuema, port, options){
-    //console.log({dnuemaKey: Object.keys(dnuema)})
+    
     const {config, controller, middleware} = dnuema
     const {env, logger} = config
     const app = express();
@@ -33,7 +33,7 @@ module.exports = function start(dnuema, port, options){
         );
         app.use(morgan("combined", { stream: accessLogStream }));
     }
-    
+
     app.use(router);
     
 
