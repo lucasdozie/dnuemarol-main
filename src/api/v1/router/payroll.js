@@ -5,34 +5,34 @@ const { BASE_URI } = require("../../../config/env");
 
 let ENDPOINT = `${BASE_URI}payroll`;
 //@todo add a limiter this endpoint 10 times every 30mins window
-module.exports = (router, controller, middleware) => {
-    router.get(`${ENDPOINT}/test`, asyncMiddleware(controller.payrollController.test)),
+module.exports = (router, {payrollController}, middleware) => {
+    router.get(`${ENDPOINT}/test`, asyncMiddleware(payrollController.test)),
     router.post(
       `${ENDPOINT}/create`,
       PayrollValidator,
       middleware.accessTokenAuth("payroll.write"),
-      asyncMiddleware(controller.payrollController.create)
+      asyncMiddleware(payrollController.create)
     ),
     router.get(
         `${ENDPOINT}/getall`,
         middleware.accessTokenAuth("payroll.read"),
-        asyncMiddleware(controller.payrollController.getAll)
+        asyncMiddleware(payrollController.getAll)
     ),
     router.get(
       `${ENDPOINT}/getone`,
       middleware.accessTokenAuth("payroll.read"),
-      asyncMiddleware(controller.payrollController.getOne)
+      asyncMiddleware(payrollController.getOne)
   ),
     router.put(
       `${ENDPOINT}/update`,
       middleware.accessTokenAuth("payroll.edit"),
       PayrollValidator,
-      asyncMiddleware(controller.payrollController.update)
+      asyncMiddleware(payrollController.update)
     ),
     router.get(
       `${ENDPOINT}/updateAndGetNextValue`,
       middleware.accessTokenAuth("payroll.read"),
       //  loginRequired, //@todo get another authenticator for in-house product communication
-      asyncMiddleware(controller.payrollController.updateAndgetSequenceNextValue)
+      asyncMiddleware(payrollController.updateAndgetSequenceNextValue)
     );
 };

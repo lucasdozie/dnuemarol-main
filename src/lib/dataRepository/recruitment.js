@@ -4,9 +4,9 @@
  * @example http dnuemarol.prototypes.db = await dnuemarol-main()
  * dnuemarolMain.db.getConnection, dnuemarol.services.organization, dnuemarol.services.auth, dnuemarol.utils.calender, duemarol.helper.inputValidator
 */
-const { MODELSCHEMAKEYS } = require("./../helpers/blacklist");
+const { MODELSCHEMAKEYS } = require("../../api/v1/helpers/blacklist");
 
-module.exports = function PayrollRepo(getConn, logger) {
+module.exports = function RecruitmentRepo(getConn, logger) {
     /**
      * @name create
      * @param {Object} reqBody

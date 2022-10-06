@@ -1,4 +1,4 @@
-module.exports = (route, controller, middleware) => {
+module.exports = (route, {recruitmentController}, middleware) => {
     route.get(`test`, (req, res, next) => console.log("Test Okr")),
-    route.get(`getAll`, controller.recruitmentController.getAll)
+    route.get(`getAll`, recruitmentController.getAll)
 }

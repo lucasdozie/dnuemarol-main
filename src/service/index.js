@@ -1,9 +1,9 @@
-const Dnuemarol = require("./dnuemarol/api")
+const Dnuemarol = require("./dnuemarol")
 //const ThirdParty = require("./thirdparty");
-module.exports = function services(dnuema_env){
+module.exports = function services(dependencies, logger, getConfig, utils){
     
     return {
-        dnuemarol:  Dnuemarol(dnuema_env),
+        dnuemarol:  Dnuemarol(getConfig, logger),
     //    thirdParty: new ThirdParty()
     }
 }

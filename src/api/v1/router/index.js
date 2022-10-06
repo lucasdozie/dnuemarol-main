@@ -4,7 +4,10 @@
 
 module.exports.load = (router, controller, middleware) => {
   //require("./user")(router);
-  require("./payroll")(router, controller, middleware);
-  require("./okr")(router, controller, middleware)
-  require("./recruitment")(router, controller, middleware)
+  require("./jobEntry")(router, controller, middleware)
+  require("./jobListing")(router, controller, middleware)
+  // require("./talentPool")(router, controller, middleware)
+  // require("./payroll")(router, controller, middleware);
+  // require("./okr")(router, controller, middleware)
+  // require("./recruitment")(router, controller, middleware)
 }

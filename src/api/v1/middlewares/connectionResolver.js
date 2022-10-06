@@ -28,7 +28,7 @@ const resolveTenant = (req, res, next) => {
 
 
 function cls(req, res, next) {
-  let tenant = req.headers["x-nuema-customerid"] || req.headers.customer || "thriveAgric"; //req.headers.x-nuema-customername
+  let tenant = req.headers["x-nuema-customerid"] || "thriveAgric";
   tenant = tenant.toLowerCase();
   console.log("tenant middleware... ",{tenant})
 

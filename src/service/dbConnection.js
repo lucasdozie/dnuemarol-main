@@ -3,7 +3,7 @@ const getConfigEnv = require("./../config/env");
 //const {default: logger} = require("./../config/logger");
 import logger from "./../config/logger"
 
-const dnuemarolService = require('./dnuemarol/api')
+const dnuemarolService = require('./dnuemarol')
 
 const connectionFactory = require('../config/database')
 const connectionFactoryAdmin = require('../config/databaseAdmin');

@@ -1,9 +1,9 @@
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
-const { successResponse } = require("../../../utils/httpStatus");
-const {NotFoundError} = require("./../../../utils/errors")
+const { successResponse } = require("./../../utils/httpStatus");
+const {NotFoundError} = require("./../../utils/errors")
 
-module.exports = function SessionAuthService(MAIN_API_URL = "", JWT_SECRET){ //MAIN_API_URL
+module.exports = function SessionAuthService(MAIN_API_URL = "", JWT_SECRET, logger){ //MAIN_API_URL
     const NEW_MAIN_API_URL =`${MAIN_API_URL}sessionauth/`;
     function getAll(query, httpheaders){
         const options = Object.assign({}, {
