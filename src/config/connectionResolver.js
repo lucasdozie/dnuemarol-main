@@ -1,6 +1,6 @@
 module.exports = function ConnectionResolver(cls, setupCon, logger){
     function resolveCustomer(req, res, next) {
-        let tenant = req.headers["x-ims-customerid"] || req.headers.customer || "thriveAgricTest"; //req.headers.x-ims-customername
+        let tenant = req.headers["x-nuema-customerid"] || "thriveAgricTest"; //req.headers.x-ims-customername
         tenant = tenant.toLowerCase();
         logger.info("tenant middleware... ",{tenant})
       

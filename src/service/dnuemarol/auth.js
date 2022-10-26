@@ -14,6 +14,19 @@ module.exports = function AuthService(MAIN_API_URL){ //MAIN_API_URL
               throw new Error(`Error: ${e}`);
         });
     }
+
+    function register(params, request){
+        const options = {
+            data: params,
+            headers: request.headers
+        }
+        return Promise.resolve(axios.get(`${MAIN_API_URL}/user/register`, options)).catch(err => {
+            if (e instanceof Error) {
+                throw e;
+              }
+              throw new Error(`Error: ${e}`);
+        });
+    }
     function getAll(params, request){
         const options = {
             data: params,
@@ -28,6 +41,7 @@ module.exports = function AuthService(MAIN_API_URL){ //MAIN_API_URL
     }
     return Object.freeze({
         login,
+        register,
         getAll
     })
 }

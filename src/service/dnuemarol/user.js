@@ -31,16 +31,39 @@ module.exports = function UserService(MAIN_API_URL = ""){ //MAIN_API_URL
             //    ...httpheaders
             }
         });
-        
-        //console.log({httpheaders})
         const url = `${NEW_MAIN_API_URL}getOne`//?id=${options.data._id}`
         console.log(url, options);
-        //return {id: "6304fcddab4995d76ef1f2c0"}
         return new Promise((resolve, reject) => {
             axios.get(url, options)
             .then(res => resolve(res.data))
             .catch(err => {
                 console.log(err)//, {keys: Object.keys(err)})
+                reject(err.response?.data || err.message)
+            })
+        })
+        
+    }
+
+    function createOne(payload, httpheaders){
+        const options = Object.assign({}, {
+            timeout: 5000,
+        }, {
+            //params: payload,
+            //data: payload,
+            headers: {
+                'Content-Type': 'application/json',
+                "x-nuema-customerid": httpheaders['x-nuema-customerid'],
+                "authorization": httpheaders['authorization']
+            //    ...httpheaders
+            }
+        });
+        
+        const url = `${NEW_MAIN_API_URL}createOneFromJobEntry`//?id=${options.data._id}`
+        return new Promise((resolve, reject) => {
+            axios.post(url, payload, options)
+            .then(res => resolve(res.data))
+            .catch(err => {
+                console.log({keys: Object.keys(err), message: err.message, request: err.request})
                 reject(err.response?.data || err.message)
             })
         })
@@ -66,6 +89,7 @@ module.exports = function UserService(MAIN_API_URL = ""){ //MAIN_API_URL
     return Object.freeze({
         getAll,
         getOne,
+        createOne,
         test
     })
 }

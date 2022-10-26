@@ -7,10 +7,12 @@ module.exports = function JobEntrySchema(schemaProvider) {
         id: {type: schemaProvider.Schema.Types.ObjectId},
         name: String
       },
-      jobopeningId: {type: schemaProvider.Schema.Types.ObjectId}, 
+      joblistingId: {type: schemaProvider.Schema.Types.ObjectId}, 
       candidate: {
         id: String,
-        name: String,
+        first_name: String,
+        middle_name: String,
+        last_name: String,
         phone_number: String,
         dob: String,
         email: {
@@ -29,10 +31,10 @@ module.exports = function JobEntrySchema(schemaProvider) {
         tertiary: String,
         currentRole: String,
         yearsOfExperience: Number,
-        skills: {type: Array},
-        cv: String,//url link to the location of the CV file
+        skill: {type: Array},
       },
-      stages: {
+      cv: String,//url link to the location of the CV file
+      stage: {
         type: String,
         enum: ["pending", "under review", "interview", "assessment", "Hr review", "hired"],
         default: "pending"

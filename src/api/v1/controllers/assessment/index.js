@@ -1,7 +1,7 @@
 "use strict";
-module.exports = function JobListingController(usesCases, logger){
+module.exports = function AssessmentController(usesCases, logger){
   async function test(req, res, next) {
-    return res.status(200).json({ message: "welcome to jobListing endpoint" });
+    return res.status(200).json({ message: "welcome to Assessment endpoint" });
   }
 
   async function create(req, res, next) {

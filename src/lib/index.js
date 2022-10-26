@@ -70,7 +70,7 @@ function Dnuemarol(params){
 
     const subscriber = getSubscriber(eventEmitter, setupInstance, Object.assign({}, useCases, services), getConfig);
 
-    const controller = getControllers(Object.assign({}, useCases, services), logger, subscriber)//(useCases, services, logger)
+    const controller = getControllers(Object.assign({}, useCases, services), logger, utils, getConfig, subscriber)//(useCases, services, logger)
 
     const middleware = getMiddlewares(logger, Object.assign({}, useCases, services), redisClient);
 

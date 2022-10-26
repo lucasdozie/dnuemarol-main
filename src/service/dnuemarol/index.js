@@ -5,7 +5,6 @@ const User = require("./user");
 
 module.exports = function dnuemarolService(config, logger) {
     const API_URL = config.env.DNUEMA_ORGANIZATION_MS_URL;
-    console.log({API_URL})
     return Object.freeze({
         organization: Organization(API_URL, logger),
         sessionAuth: SessionAuth(API_URL, config.env.JWT_SECRET, logger),

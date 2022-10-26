@@ -1,7 +1,7 @@
 "use strict";
 
-module.exports = function JobListingSchema(schemaProvider) {
-  const jobListingSchema = new schemaProvider.Schema(
+module.exports = function JobAssessmentSchema(schemaProvider) {
+  const assessmentSchema = new schemaProvider.Schema(
     {
       user: {
         id: {type: schemaProvider.Schema.Types.ObjectId},
@@ -20,23 +20,11 @@ module.exports = function JobListingSchema(schemaProvider) {
         state: {type: String, default: "Lagos"},
         industry: {type: String, default: "tech"},
       },
-      detail: {
-        description: {
-          type: String,
-        }, //description about the job
-        banner_url: {type: String, default: "banner.jpg"},
-        job_id: {type: String},//6 - 8 random generated alphaNumeric characters
-        skill_qualifications: {type: Array}, //requirement for the role
-        skill_tools: {type: Array}, //other requirement/tools used for the role
-        job_role: {type: String, enum: ["frontend", "backend", "Quality Assurance", "finiance officier"]},
-        job_address: {type: String},
-        job_type: {type: String, enum: ["remote", "onsite", "hybrid"], default: "onsite"},
-        job_responsibility: {type: Array},
-        benefits: {type: Array}
-      },
-      salary_range: {
-        min: {type: String},
-        max: {type: String},
+      alloted_time: {type: String, default: "10"},//in mins
+      questions: {type: Array},
+      answers: {type: Array},
+      description: {
+        type: String,
       },
       department: {
         type: String,
@@ -69,5 +57,5 @@ module.exports = function JobListingSchema(schemaProvider) {
     }
   );
 
-  return jobListingSchema;
+  return assessmentSchema;
 };

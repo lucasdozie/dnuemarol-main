@@ -1,6 +1,6 @@
 const {BASE_URI} = require("./../../../config/env");
 const asyncMiddleware = require("../middlewares/asyncMiddleware");
-const ENDPOINT = `${BASE_URI}jobListing/`;
+const ENDPOINT = `${BASE_URI}recruit/jobListing/`;
 module.exports = (route, {jobListingController}, middleware) => {
     route.get(`${ENDPOINT}test`, middleware.accessTokenAuth("jobListing.read"), asyncMiddleware(jobListingController.test)),
     route.post(`${ENDPOINT}create`, middleware.accessTokenAuth("jobListing.write"), asyncMiddleware(jobListingController.create)),

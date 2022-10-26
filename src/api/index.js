@@ -17,7 +17,8 @@ module.exports = function start(dnuema, port, options){
     starterConfig(app);
     const router = express.Router();
 
-    app.use([`${env.BASE_URI}user`, `${env.BASE_URI}payroll`], conResolver.resolveCustomer)
+    //app.use([`${env.BASE_URI}user`, `${env.BASE_URI}payroll`], conResolver.resolveCustomer)
+    app.use([`${env.BASE_URI}user`, `${env.BASE_URI}payroll`, `${env.BASE_URI}recruit`, `${env.BASE_URI}assessment`], conResolver.resolveCustomer)
     starterRoutes(app);
     app.use(router);
     logger.info(`load all routes... now `)
